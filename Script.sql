@@ -28,6 +28,10 @@ GO
 --CREATE STORED Procedure to Insert Record into new In memory table.
 DROP PROCEDURE IF EXISTS dbo.spiClaimIdMap;
 GO
+/*
+EXEC [dbo].[spiClaimIdMap] @ClaimId = 1, @ClaimHeaderId = @ClaimHeaderId OUTPUT
+SELECT	@ClaimHeaderId as N'@ClaimHeaderId'
+*/
 CREATE PROCEDURE spiClaimIdMap
 (
 	@ClaimId BIGINT,
@@ -39,3 +43,5 @@ BEGIN
 	INSERT INTO ClaimIdMap(ClaimId) VALUES (@ClaimId);
 	SELECT @ClaimHeaderId = SCOPE_IDENTITY();
 END
+
+SELECT * FROM ClaimIdMap
